@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title></title>
+    <link rel="stylesheet" href="https://js.arcgis.com/3.15/esri/css/esri.css">
+    <style>
+      html, body, #map {
+        height: 100%; width: 100%; margin: 0; padding: 0; 
+      }
+    </style>
+
+    <script src="https://js.arcgis.com/3.15/"></script>
+    <script>
+      // Se ponen al principio ya que son variables que no cambian.
+      var urlTiledService = "http://services.arcgisonline.com/arcgis/rest/services/World_Terrain_Base/MapServer" ;
+      var urlFeatureLayer0 = "http://sampleserver6.arcgisonline.com/arcgis/rest/services/USA/MapServer/0";
+      var urlFeatureLayer1 = "http://sampleserver6.arcgisonline.com/arcgis/rest/services/USA/MapServer/1";
+      var urlFeatureLayer2 = "http://sampleserver6.arcgisonline.com/arcgis/rest/services/USA/MapServer/2";
+      var urlFeatureLayer3 = "http://sampleserver6.arcgisonline.com/arcgis/rest/services/USA/MapServer/3";
+
+
+      require(["esri/map",  
+               "esri/layers/ArcGISTiledMapServiceLayer",
+               "esri/layers/FeatureLayer",
+               "dojo/domReady!"],
+               // cuando se definen clases una de las cosas que se utilizan son la Herencia o Hierachy
+               // 
+        function(Map,
+                 Tiled,
+                 FeatureLayer) {
+
+        map = new Map("map", 
+
+          // creo la capa dinamica
+        var tiled = new Tiled("http://services.arcgisonline.com/arcgis/rest/services/Ocean_Basemap/MapServer");
+          // añado la capa dinamica al mapa
+          
+        var FeatureLayer0 = new FeatureLayer(urlFeatureLayer0,{id:"Cities"});
+        var FeatureLayer1 = new FeatureLayer(urlFeatureLayer1,{id:"Highways"});
+        var FeatureLayer2 = new FeatureLayer(urlFeatureLayer2,{id:"States"});
+        var FeatureLayer3 = new FeatureLayer(urlFeatureLayer3,{id:"Counties"});
+
+        var graphicLayer = new GraphicsLayer(),
+
+
+        map.addLayer(tiledLayer);
+
+
+        map.addlayer(FeatureLayer0,3)
+        map.addlayer(FeatureLayer1,2)
+        map.addlayer(FeatureLayer2,1)
+        map.addlayer(FeatureLayer3,0)
+
+        }
+      );
+    </script>
+  </head>
+  <body>
+    <div id="map"></div>
+  </body>
+</html>
+ 

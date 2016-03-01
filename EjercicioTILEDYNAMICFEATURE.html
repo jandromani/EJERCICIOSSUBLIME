@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title></title>
+    <link rel="stylesheet" href="https://js.arcgis.com/3.15/esri/css/esri.css">
+    <style>
+      html, body, #map {
+        height: 100%; width: 100%; margin: 0; padding: 0; 
+      }
+    </style>
+
+    <script src="https://js.arcgis.com/3.15/"></script>
+    <script>
+      // Se ponen al principio ya que son variables que no cambian.
+      var urlTiledService = "http://services.arcgisonline.com/arcgis/rest/services/World_Terrain_Base/MapServer" ;
+      var urlDynamic = "http://sampleserver6.arcgisonline.com/arcgis/rest/services/USA/MapServer";
+
+      var urlFeatureLayer = "http://sampleserver6.arcgisonline.com/arcgis/rest/services/Military/FeatureServer"
+
+
+      require(["esri/map",  
+               "esri/layers/ArcGISTiledMapServiceLayer",
+               "esri/layers/ArcGISDynamicMapServiceLayer",
+               "esri/layers/FeatureLayer",
+               "dojo/domReady!"],
+               // cuando se definen clases una de las cosas que se utilizan son la Herencia o Hierachy
+               // 
+        function(Map,
+                 Tiled,
+                 ArcGISDynamicMapServiceLayer,
+                 FeatureLayer) {
+
+          map = new Map("map");
+          // creo la capa dinamica
+          var tiled = new Tiled("http://services.arcgisonline.com/arcgis/rest/services/Ocean_Basemap/MapServer");
+          // añado la capa dinamica al mapa
+          var Urldynamic = new ArcGISDynamicMapServiceLayer (urlDynamic);
+          // Tiene alguna importancia el orden del addlayer???? 
+          var  FeatureLayer = new FeatureLayer(urlFeatureLayer);
+          map.addLayer(tiled);
+          map.addLayer(Urldynamic)
+          map.addlayer(FeatureServer)
+
+        }
+      );
+    </script>
+  </head>
+  <body>
+    <div id="map"></div>
+  </body>
+</html>
+ 
